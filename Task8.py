@@ -57,17 +57,22 @@
 
 list = [i + 1 for i in range(int(input("Введите количество человек: ")))]
 step = int(input("Какое число в считалке? "))
-print(f"Значит, выбывает каждый {step}-й человек\n\nТекущий круг людей:", list)
+print(f"Значит, выбывает каждый {step}-й человек.")
 position = 0
+startcount = list[position]
 
 for _ in range(len(list) - 1):
-    print("Начало счёта с номера", list[position])
+    print(f"\nТекущий круг людей:", list)
+    print("Начало счёта с номера", startcount)
     position += step - 1
-    while position > len(list):
+    while position >= len(list):
         position = abs(position - len(list))
     print("Выбывает человек под номером", list[position])
     list.pop(position)
-    print(f"\nТекущий круг людей:", list)
 
+    if position >= len(list):
+        startcount = list[0]
+    else:
+        startcount= list[position]
 
 print("\nОстался человек под номером", list[0])
